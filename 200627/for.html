@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul class="list">
+
+    </ul>
+
+
+    <!--  -->
+    <ul>
+        <!-- <li>
+            <a href="tomato.html">
+            <img src="tomato.png" alt="トマト">
+            <h3>Title1</h3>
+            <p>詳しくはこちら</p>
+            </a>
+        </li>
+        <li>
+            <a href="banana.html">
+            <img src="banana.png" alt="バナナ">
+            <h3>Title1</h3>
+            <p>詳しくはこちら</p>
+            </a>
+        </li> -->
+    </ul>
+
+    <script>
+        // 配列
+        // constは定数
+        const menuList = ['HOME', 'ABOUT', 'WORKS','CONTACT'];
+        const menuLink = ['index.html','about.html','works.html','contact.html'];
+        // index.html about.html works.html contact.html
+        const ulEl = document.querySelector('.list'); //要素を取得（.listを取得）
+
+        for(let i=0; i<menuList.length; i++){
+            //li
+            const newLiEl = document.createElement('li'); //liを作る
+            newLiEl.setAttribute('class','menu'); //liに対し、menuというclass名を付与する。
+            //a
+            const newAEl = document.createElement('a'); //aを作る
+            newAEl.setAttribute('href',menuLink[i]); //menuLink[i]を’’で囲うと文字列になるので注意！
+            newLiEl.appendChild(newAEl); //liにaを追加
+            //text
+            const newTextNode = document.createTextNode(menuList[i]); //文字を作る
+            newAEl.appendChild(newTextNode); //liの中に文字を入れる
+            ulEl.appendChild(newLiEl); //ulの中にliを入れる（子要素にする）
+
+            // 順番大事！ htmlの記述順に合わせて作成する。
+            console.log(menuList[i]);
+        }
+
+
+
+    </script>
+
+
+
+</body>
+</html>
