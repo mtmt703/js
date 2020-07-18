@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JS_homework</title>
+
     <style>
         img{
             width: 300px;
@@ -28,53 +29,69 @@
     </style>
 </head>
 <body>
-
+    <button class="btn">クリック</button>
 
     <ul class="vege_list">
-        <!-- <li>
-            <a href="tomato.html">
-            <img src="tomato.png" alt="トマト">
-            <h3>Title1</h3>
-            <p>詳しくはこちら</p>
-            </a>
-        </li>
-        <li>
-            <a href="banana.html">
-            <img src="banana.png" alt="バナナ">
-            <h3>Title2</h3>
-            <p>詳しくはこちら</p>
-            </a>
-        </li> -->
+       
     </ul>
 
     <script>
-        // 宿題：htmlに画像を表示させる
-        const vegeList =['tomato','banana','orange'];
-        const vegeLink = ['tomato.html', 'banana.html','orange.html'];
-        const imgEl = ['images/tomato.jpg','images/banana.jpg','images/orange.jpg'];
-        const ttlList =['Title1','Title2','Title3'];
-        const altList = ['トマト','バナナ','オレンジ'];
+
+        const vegeListArray =[
+            {
+                vegeList: 'tomato',
+                vegeLink:'tomato.html',
+                imgEl:'images/tomato.jpg',
+                ttlList:'Title1',
+                altList:'トマト'
+            },
+            {
+                vegeList: 'banana',
+                vegeLink:'banana.html',
+                imgEl:'images/banana.jpg',
+                ttlList:'Title2',
+                altList:'バナナ'
+            },
+            {
+                vegeList: 'orange',
+                vegeLink:'orange.html',
+                imgEl:'images/orange.jpg',
+                ttlList:'Title3',
+                altList:'オレンジ'
+            }
+        ];
+
         // 要素を取得!!
         const ulEl = document.querySelector('.vege_list');
 
-        for(let i =0; i<vegeList.length; i++){
+        //.btnをクリックしたら
+        document.querySelector('.btn').addEventListener('click',setVegitable);
+        
+
+        // 実行
+        // setVegitable();
+
+        function setVegitable(){ 
+        for(let i =0; i<vegeListArray.length; i++){
+
+            console.log(vegeListArray[i].vegeList);
             // liタグを作って、それに対してvegeというクラス名を付与
             const newLiEl = document.createElement('li');
             newLiEl.setAttribute('class','vege');
 
             // aタグを作り、リンクを貼る
             const newAEl = document.createElement('a');
-            newAEl.setAttribute('href',vegeLink[i]);
+            newAEl.setAttribute('href',vegeListArray[i].vegeLink);
             
             // imgタグを作り、画像にsrc属性をつける
             const newImgEl = document.createElement('img');
-            newImgEl.setAttribute('src',imgEl[i]);
+            newImgEl.setAttribute('src',vegeListArray[i].imgEl);
             // 画像にaltをつける
-            newImgEl.setAttribute('alt',altList[i]);
+            newImgEl.setAttribute('alt',vegeListArray[i].altList);
 
             // h3を作り、タイトルを付与
             const newHEl = document.createElement('h3');
-            const newHtext = document.createTextNode(ttlList[i]);
+            const newHtext = document.createTextNode(vegeListArray[i].ttlList);
             // h3タグの中にテキストを入れる
             newHEl.appendChild(newHtext);
 
@@ -94,18 +111,11 @@
             //最後、ulの中にliを入れる（子要素にする）!!
             ulEl.appendChild(newLiEl);
 
-            console.log(newLiEl);
-            
-            
-            /*
-            質問
-            newLiEl.appendChild(newAEl,newImgEl,newHEl,newPEl); はダメ？連続して入れたい。
-            i<vegeList.length; i>vegeList.length; はダメ？
-            const ulEl = document.querySelector('.vege_list'); これないとなんでダメなのか？
-            ulEl.appendChild(newLiEl); この命令忘れるとなぜhtmlに表示されないの？
-            setAttribute は属性を作る指示？  → 要素の属性設定
-            */
+            console.log(newLiEl);       
         }
+
+        }
+
 
 
 

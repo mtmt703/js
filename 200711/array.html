@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS_homework</title>
+
+    <style>
+        img{
+            width: 300px;
+            height: auto;
+        }
+        ul{
+            list-style: none;
+        }
+        h3,p{
+            margin: 8px 0 0;
+        }
+        li{
+            margin-bottom: 48px;
+        }
+        li:hover{
+            cursor: pointer;
+        }
+        a{
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+<body>
+
+
+    <ul class="vege_list">
+        <!-- <li>
+            <a href="tomato.html">
+            <img src="tomato.png" alt="トマト">
+            <h3>Title1</h3>
+            <p>詳しくはこちら</p>
+            </a>
+        </li>
+        <li>
+            <a href="banana.html">
+            <img src="banana.png" alt="バナナ">
+            <h3>Title2</h3>
+            <p>詳しくはこちら</p>
+            </a>
+        </li> -->
+    </ul>
+
+    <script>
+
+        const vegeListArray =[
+            {
+                vegeList: 'tomato',
+                vegeLink:'tomato.html',
+                imgEl:'images/tomato.jpg',
+                ttlList:'Title1',
+                altList:'トマト'
+            },
+            {
+                vegeList: 'banana',
+                vegeLink:'banana.html',
+                imgEl:'images/banana.jpg',
+                ttlList:'Title2',
+                altList:'バナナ'
+            },
+            {
+                vegeList: 'orange',
+                vegeLink:'orange.html',
+                imgEl:'images/orange.jpg',
+                ttlList:'Title3',
+                altList:'オレンジ'
+            }
+        ];
+
+        // 要素を取得!!
+        const ulEl = document.querySelector('.vege_list');
+
+        // for(let i =0; i<vegeListArray.length; i++){
+        //     console.log(vegeListArray[i].vegeList);
+            
+
+        // }
+
+
+        // const vegeList =['tomato','banana','orange'];
+        // const vegeLink = ['tomato.html', 'banana.html','orange.html'];
+        // const imgEl = ['images/tomato.jpg','images/banana.jpg','images/orange.jpg'];
+        // const ttlList =['Title1','Title2','Title3'];
+        // const altList = ['トマト','バナナ','オレンジ'];
+        
+
+        for(let i =0; i<vegeListArray.length; i++){
+
+            console.log(vegeListArray[i].vegeList);
+            // liタグを作って、それに対してvegeというクラス名を付与
+            const newLiEl = document.createElement('li');
+            newLiEl.setAttribute('class','vege');
+
+            // aタグを作り、リンクを貼る
+            const newAEl = document.createElement('a');
+            newAEl.setAttribute('href',vegeListArray[i].vegeLink);
+            
+            // imgタグを作り、画像にsrc属性をつける
+            const newImgEl = document.createElement('img');
+            newImgEl.setAttribute('src',vegeListArray[i].imgEl);
+            // 画像にaltをつける
+            newImgEl.setAttribute('alt',vegeListArray[i].altList);
+
+            // h3を作り、タイトルを付与
+            const newHEl = document.createElement('h3');
+            const newHtext = document.createTextNode(vegeListArray[i].ttlList);
+            // h3タグの中にテキストを入れる
+            newHEl.appendChild(newHtext);
+
+            // ｐタグを作り、「詳しくはこちら」という文字列を入れる
+            const newPEl = document.createElement('p');
+            const newPtext = document.createTextNode('詳しくはこちら');
+            // ｐタグの中にテキストを入れる
+            newPEl.appendChild(newPtext);
+
+            // liの中にaタグを入れる
+            newLiEl.appendChild(newAEl);
+            // aタグの中にimg、h3、pを入れる
+            newAEl.appendChild(newImgEl);
+            newAEl.appendChild(newHEl);
+            newAEl.appendChild(newPEl);
+
+            //最後、ulの中にliを入れる（子要素にする）!!
+            ulEl.appendChild(newLiEl);
+
+            console.log(newLiEl);
+            
+        }
+
+
+        // const myBook ={
+        //     title:'My JavaScript Book',
+        //     autthor:'taniguchi',
+        //     price:2000
+        // };
+        
+        // オブジェクトの中に配列を入れる  ★ほんきJSで習った方
+        const myBook ={
+            title:['My JavaScript Book','My PHP Book','My HTML Book'],
+            author:['taniguchi','yonekura','matsumoto'],
+            price:[2000, 3000, 4000]
+        };
+        
+        // console.log(myBook.author[2]);
+
+
+
+        // 配列の中にオブジェクトを入れる ★こっちの方が便利！
+        const myBookArray = [
+           {
+                title:'JS Book',
+                author:'taniguchi',
+                price:'2000'
+
+            },
+            {
+                title:'PHP Book',
+                author:'yonekura',
+                price:'2000'
+
+            },
+           {
+                title:'HTML Book',
+                author:'matsumoto',
+                price:'2000'
+
+            }
+
+        ];
+
+        // 配列を先に指定する
+        // console.log(myBookArray[2].author);
+
+
+        
+
+
+
+    </script>
+
+
+
+</body>
+</html>

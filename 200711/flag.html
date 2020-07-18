@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accordion</title> 
+    <style>
+        .accordion{
+            margin: 0;
+            padding: 0;
+            width: 200px;
+        }
+
+        .accordionDt{
+            margin: 0;
+            padding: 8px;
+            background-color: #ddd;
+            cursor: pointer;
+        }
+        .accordionDd{
+            margin: 0;
+            padding: 8px;
+            background-color: #eee;
+            visibility:hidden; 
+            opacity:0;
+            /* display: none;はつかはない */
+            transition: all 0.5s ease;
+        }
+
+        .accordion dd.show{
+            visibility:visible;
+            opacity: 1;
+        }
+
+    </style> 
+</head>
+<body>
+   <dl class="accordion">
+       <dt class="accordionDt">アコーディオン</dt>
+       <!-- 動的にこの状態にしたい ↓-->
+       <!-- <dd class="show">アコーディオンとは....</dd> -->
+       <dd class="accordionDd">アコーディオンとは....</dd>
+   </dl>
+
+   <div class="vegitable">
+
+   </div>
+   <script>
+    //フラグ変数
+    let accordionFlag = false;
+
+    document.querySelector('.accordionDt').addEventListener('click', () =>{
+        console.log('dｔをくりっくしたよ');
+
+        if(accordionFlag == false){
+            document.querySelector('.accordionDd').classList.add('show');
+            // setAttributeは、classが上書きされてしまう
+            // .classList.add = addClass　classの追加
+            accordionFlag = true;
+        }else{
+            document.querySelector('.accordionDd').classList.remove('show');
+            accordionFlag = false;
+        }
+        console.log(accordionFlag);
+        
+       
+    });
+
+
+
+
+   </script>
+
+
+</body>
+</html>

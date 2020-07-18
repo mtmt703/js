@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flag_homework</title>
+
+    <style>
+        body{
+            margin: 0;
+        }
+        li{
+            list-style: none;
+        }
+        .vege_list{
+            margin: 0;
+            padding: 0;
+        }
+        .vege_list img{
+            position: relative;
+            width: 200px;         
+        }
+
+        .li_banana{
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.5s ease;
+            position: absolute;
+            top:0;
+            left:0;
+
+        }
+        .li_banana.show{
+            visibility: visible;
+            opacity: 1;
+        }
+
+       
+    </style>
+</head>
+<body>
+
+    <ul class="vege_list">
+        <li class="li_tomato">
+            <img src="images/tomato.jpg" alt="トマト">
+        </li>
+        <li class="li_banana">
+            <img src="images/banana.jpg" alt="バナナ">
+        </li>
+       
+    </ul>
+
+    <script>
+        // フラグ変数　constでもよい？ 最初はfalse？
+        let imgFlag = false;
+
+        document.querySelector('.vege_list').addEventListener('click',function(){
+            console.log('クリックしたよ');
+
+            if(imgFlag == false){
+                document.querySelector('.li_banana').classList.add('show');
+                imgFlag = true;
+            }else{
+                document.querySelector('.li_banana').classList.remove('show');
+                imgFlag = false;
+            }
+            console.log(imgFlag);
+
+        });
+
+
+
+        
+    
+
+    </script>
+
+
+
+</body>
+</html>
