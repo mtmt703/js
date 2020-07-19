@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>counter</title>
+
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .photo {
+            width: 200px;
+            height: auto;
+        }
+
+        .photo img {
+            width: 200px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <button class="count-btn-back">戻る</button>
+    <button class="count-btn-next">次へ</button>
+
+    <div class="photo">
+        <img src="images/tomato.jpg" alt="トマト">
+    </div>
+
+    <!-- スライドショーの丸3つ作成 -->
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+    <script>
+
+        // const photoArray = ['images/tomato.jpg','images/banana.jpg','images/orange.jpg'];
+        // const photoAlt = ['トマト','バナナ','オレンジ'];
+
+        const photoObject = [
+            {
+                imgList:'images/tomato.jpg',
+                altList:'トマト'
+            },
+            {
+                imgList:'images/banana.jpg',
+                altList:'バナナ'
+            },
+            {
+                imgList:'images/orange.jpg',
+                altList:'オレンジ' 
+            }
+
+        ];
+        
+        const photoImg = document.querySelector('.photo img');
+        console.log(photoImg);
+
+        // カウンター用の変数　最初からhtmlでトマトが表示されているから1に変更
+        let counter = 1;
+
+        document.querySelector('.count-btn').addEventListener('click',()=>{
+            
+            // 順番大事！
+            console.log('click!' + counter); 
+            // console.log(photoArray[1]);
+
+            // console.log(photoArray[counter]);
+            console.log(photoObject[counter]);
+
+            // photoImg.setAttribute('src',photoArray[counter]);
+            // [].●●をつけ忘れない！
+            photoImg.setAttribute('src',photoObject[counter].imgList);
+            // altをつける
+            // photoImg.setAttribute('alt',photoAlt[counter]);
+            photoImg.setAttribute('alt',photoObject[counter].altList);
+            console.log(photoImg);
+
+
+            // 数字管理
+            counter++; //加算
+
+            if(counter > 2){
+                counter = 0;
+            }
+
+        });
+
+
+
+        document.querySelector('.count-btn').addEventListener('click',()=>{
+            
+            // 順番大事！
+            console.log('click!' + counter); 
+            // console.log(photoArray[1]);
+
+            // console.log(photoArray[counter]);
+            console.log(photoObject[counter]);
+
+            // photoImg.setAttribute('src',photoArray[counter]);
+            // [].●●をつけ忘れない！
+            photoImg.setAttribute('src',photoObject[counter].imgList);
+            // altをつける
+            // photoImg.setAttribute('alt',photoAlt[counter]);
+            photoImg.setAttribute('alt',photoObject[counter].altList);
+            console.log(photoImg);
+
+
+            // 数字管理
+            counter++; //加算
+
+            if(counter > 2){
+                counter = 0;
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
