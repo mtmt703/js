@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>counter</title>
+
+    <style>
+        body {
+            margin: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .photo {
+            width: 200px;
+            height: auto;
+        }
+
+        .photo img {
+            width: 200px;
+            height: auto;
+        }
+
+        .pagination_conrainer {
+            display: flex;
+            width: 200px;
+            padding: 0;
+        }
+
+        .pagination {
+            cursor: pointer;
+            justify-content: space-between;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: #fbe5f7;
+            margin: 0 8px 0 30px;
+
+        }
+
+        .pagination.active {
+            background-color: #ff0000;
+
+        }
+    </style>
+</head>
+<body>
+    <button class="count-btn-back">戻る</button>
+    <button class="count-btn-next">次へ</button>
+
+    <div class="photo">
+        <img src="images/tomato.jpg" alt="トマト">
+    </div>
+
+    <!-- スライドショーの丸3つ作成 -->
+    <ul class="pagination_conrainer">
+        <li class="pagination active"></li>
+        <li class="pagination"></li>
+        <li class="pagination"></li>
+    </ul>
+
+    <script>
+
+        // const photoArray = ['images/tomato.jpg','images/banana.jpg','images/orange.jpg'];
+        // const photoAlt = ['トマト','バナナ','オレンジ'];
+
+        const photoObject = [
+            {
+                imgList: 'images/tomato.jpg',
+                altList: 'トマト'
+            },
+            {
+                imgList: 'images/banana.jpg',
+                altList: 'バナナ'
+            },
+            {
+                imgList: 'images/orange.jpg',
+                altList: 'オレンジ'
+            }
+
+        ];
+
+        //.paginationを取得して、配列に保存
+        const paginationList = document.querySelectorAll('.pagination');
+        // console.log(paginationList);
+
+        const photoImg = document.querySelector('.photo img');
+        // console.log(photoImg);
+
+        // カウンター用の変数　最初からhtmlでトマトが表示されているから0から1に変更
+        let counter = 0;
+
+        console.log('start!' + counter);
+
+
+        // 「次へ」ボタンを押した時
+        document.querySelector('.count-btn-next').addEventListener('click', () => {
+
+            // 数字管理
+            counter++; //加算
+
+            if (counter > 2) {
+                counter = 0;
+            }
+
+            // 順番大事！
+            console.log('click!' + counter);
+            // console.log(photoArray[1]);
+
+            // console.log(photoArray[counter]);
+            // console.log(photoObject[counter]);
+
+            // photoImg.setAttribute('src',photoArray[counter]);
+            // [].●●をつけ忘れない！
+            photoImg.setAttribute('src', photoObject[counter].imgList);
+            // altをつける
+            // photoImg.setAttribute('alt',photoAlt[counter]);
+            photoImg.setAttribute('alt', photoObject[counter].altList);
+            // console.log(photoImg);
+
+
+
+            for (let i = 0; i < paginationList.length; i++) {
+                //paginationListから一旦activeを外す
+                paginationList[i].classList.remove('active');
+            }
+            //paginationListのcounter番目に再度activeを付ける
+            paginationList[counter].classList.add('active');
+
+
+
+
+        });
+
+
+        // 「戻る」ボタンを押した時
+        document.querySelector('.count-btn-back').addEventListener('click', () => {
+
+            // 数字管理
+            counter--; //除算
+
+            // 0よりも小さくなったら（マイナスになったら）2、つまりはオレンジを表示させる
+            if (counter < 0) {
+                counter = 2;
+            }
+
+            // 順番大事！
+            console.log('click!' + counter);
+            // console.log(photoArray[1]);
+
+            // console.log(photoArray[counter]);
+            // console.log(photoObject[counter]);
+
+            // photoImg.setAttribute('src',photoArray[counter]);
+            // [].●●をつけ忘れない！
+            photoImg.setAttribute('src', photoObject[counter].imgList);
+            // altをつける
+            // photoImg.setAttribute('alt',photoAlt[counter]);
+            photoImg.setAttribute('alt', photoObject[counter].altList);
+            // console.log(photoImg);
+
+
+            for (let i = 0; i < paginationList.length; i++) {
+                //paginationListから一旦activeを外す
+                paginationList[i].classList.remove('active');
+            }
+            //paginationListのcounter番目に再度activeを付ける
+            paginationList[counter].classList.add('active');
+
+        });
+
+        // paginationをクリックしたら、それぞれの写真が出てくる
+        const pagiNation = [
+
+        ];
+
+        const arrayList = Array.from(paginationList);
+
+        for (let i = 0; i < paginationList.length; i++) {
+            //3回回ってる
+
+            paginationList[i].addEventListener('click', (evt) => {
+                //押した所しか反応しない
+                //listの押した番目を取得
+                const index = arrayList.findIndex(arrayList => arrayList === evt.target);
+                console.log(index);
+                //番目をcounterに保存
+                counter = index;
+                //画像を書き換える
+                photoImg.setAttribute('src', photoObject[counter].imgList);
+                // altをつける
+                // photoImg.setAttribute('alt',photoAlt[counter]);
+                photoImg.setAttribute('alt', photoObject[counter].altList);
+
+                for (let i = 0; i < paginationList.length; i++) {
+                    //paginationListから一旦activeを外す
+                    paginationList[i].classList.remove('active');
+                }
+                paginationList[counter].classList.add('active');
+            });
+
+        }
+
+        // document.querySelector('.pagination_conrainer li').addEventListener('click', () => {
+
+        //     console.log('click');
+        //     // let counter = 0;
+        //     // console.log('click!' + counter);
+
+        //     // console.log(photoObject[counter]);
+        //     // photoImg.setAttribute('src', photoObject[counter].imgList);
+        //     // photoImg.setAttribute('alt', photoObject[counter].altList);
+        //     // console.log(photoImg);
+
+
+        //     // // 数字管理
+        //     // counter++; //加算
+
+        //     // if (counter > 2) {
+        //     //     counter = 0;
+        //     // }
+
+        // });
+
+
+
+    </script>
+
+</body>
+</html>
